@@ -2,7 +2,7 @@
 
 const mongoose = require('mongoose');
 
-const PolicySchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -18,6 +18,33 @@ const PolicySchema = new mongoose.Schema({
     }
 });
 
-const Policy = mongoose.model('Policy', PolicySchema);
 
-module.exports = Policy;
+const PolicySchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    policy: {
+        type: String,
+        required: true
+    },
+    amount: {
+        type: Number,
+        required: true
+    },
+    status: {
+        type: String,
+        enum: ['active', 'inactive'],
+        default: 'active'
+    }
+});
+
+const Policy = mongoose.model('Policy', PolicySchema);
+const User = mongoose.model('User', UserSchema);
+module.exports = {Policy,User};
