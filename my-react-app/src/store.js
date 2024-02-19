@@ -1,14 +1,13 @@
-import {
-    create
-} from 'zustand'
+import { create } from "zustand";
 const store = (set) => ({
-    tasks: [{
-        title: "TestTask",
-        state: "PLANNED"
-    }],
-    addTask:(title, state) => {
-        set((store) => ({tasks:[...store.tasks, {title, state}]}))
-    }
-})
+  user: null,
+  RegisterUser: (data) => {
+    set((store) => ({ user: data }));
+    localStorage.setItem("user", "data");
+  },
+  EditUser: (data) => {
+    // set((store) => ({ tasks: [...store.tasks, { title, state }] }));
+  },
+});
 
-export const useStore = create(store)
+export const useStore = create(store);
